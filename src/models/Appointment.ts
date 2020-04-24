@@ -1,4 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  CreateDateColumn,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('appointments')
 class Appointment {
@@ -8,8 +13,8 @@ class Appointment {
   @Column()
   provider: string;
 
-  @Column('timestamp with local time zone')
-  date: Date;
+  @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
+  createDateTime: Date;
 }
 
 export default Appointment;
